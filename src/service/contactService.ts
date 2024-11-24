@@ -1,4 +1,3 @@
-import { Contact } from "../screen/Contatos";
 import { ContactInterface } from "../types/type";
 import api from "./api";
 
