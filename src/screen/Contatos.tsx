@@ -5,6 +5,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../../App';
 import { Ionicons } from '@expo/vector-icons'
 import { useFocusEffect } from '@react-navigation/native';
+import { deleteContact } from '../service/contactService';
 
 type ContatosScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Contatos'>;
 
@@ -29,7 +30,10 @@ export const Contact: React.FC<Props> = ({navigation}) => {
                     <View style={styles.contactCard}>
                         <TouchableOpacity onPress={() =>  navigation.navigate('Location', {contact: item})}>
                             <Text style={styles.contactName}>{item.name}</Text>
-                            <Text style={styles.contactName}>{item.address}</Text>
+                            <Text style={styles.contactName}>{item.address}</Text>'
+                            <TouchableOpacity style={styles.removeButton} onPress={() => {deleteContact(item.id)}}>
+                                <Ionicons name="trash" size={16} color="gray"/>
+                            </TouchableOpacity>
                         </TouchableOpacity>
                     </View>
                 )}
@@ -83,4 +87,21 @@ const styles = StyleSheet.create({
       shadowOffset: { width: 0, height: 2 },
       shadowRadius: 4,
     },
+    removeButton: {
+        position: 'absolute',
+        top:16,
+        right: 16,
+        backgroundColor: '#FF0000',
+        borderRadius: 30,
+        width: 30,
+        height: 30,
+        alignItems: 'center',
+        justifyContent: 'center',
+        elevation: 6,
+        shadowColor: '#000',
+        shadowOpacity: 0.3,
+        shadowOffset: { width: 0, height: 2 },
+        shadowRadius: 4,
+      },
+
   });

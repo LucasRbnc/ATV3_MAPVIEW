@@ -1,3 +1,4 @@
+import { Contact } from "../screen/Contatos";
 import { ContactInterface } from "../types/type";
 import api from "./api";
 
@@ -11,3 +12,12 @@ export const addContact = async (contact: Omit<ContactInterface, 'id'>) =>{
     return response.data;
 };
 
+export const editContact = async (contact: ContactInterface) => {
+    const response = await api.put("/", contact);
+    return response.data;
+}
+
+export const deleteContact = async (id:string) => {
+    const response = await api.delete(`/?id=${id}`);
+    return response.data;
+}
